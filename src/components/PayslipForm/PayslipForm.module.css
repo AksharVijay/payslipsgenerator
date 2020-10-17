@@ -1,0 +1,29 @@
+.payslipForm {
+    /* width: 30rem; */
+    width:100%;
+    margin: 2rem auto;
+    max-width: 80%;
+  }
+  
+  .formControl label,
+  .formControl input {
+    display: block;
+    width: 100%;
+  }
+  
+  .formControl  {
+    font: inherit;
+
+    margin-bottom: 1rem;
+  }
+  
+  .formControl input:focus {
+    outline: none;
+    border-color: #ff2058;
+  }
+
+  .new{
+    width : 100%;
+    background-color: #ff2058;
+  }
+  

@@ -1,0 +1,30 @@
+.Button {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    margin: 10px 0px;
+    font-weight: 400;
+    border-radius: 5px;
+}
+
+.Button:first-of-type {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.GeneratePayslip {
+  background-color: #5C9210;
+}
+
+.Reset {
+  background-color: #944317;
+}
+
+.StartOver {
+  color : #336699;
+}
