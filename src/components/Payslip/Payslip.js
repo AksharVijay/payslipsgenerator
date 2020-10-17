@@ -1,49 +1,20 @@
 import React, { Component } from 'react';
 import Card from '../UI/Card/Card';
 //import Pay from '../Pay/Pay';
-import axios from 'axios';
 // import Spinner from '../UI/Spinner/Spinner';
 
 class Payslip extends Component {
     state = {
         payslips : []
-        // loading : false
     }
 
-    componentDidMount () {
-    axios.get('https://payslip-c3443.firebaseio.com/payslips')
-        //axios.get('https://jsonplaceholder.typicode.com/users')
-            .then(response => {
-                const payslips = response.data
-                this.setState({payslips});
-                console.log(response);
-            })  
-            .catch(error => {
-                console.log(error);
-              });
-    }
 
     render(){
-        // const payslips =this.state.payslips.map(pay =>{
-        //     return <Pay firstname={pay.firstname}/>;
-        // });
-
-        // let pay  =  (
-        //     <React.Fragment>
-        //         <Pay payslips = {this.state.payslips}/>
-        //     </React.Fragment>);
-
-        // if(this.state.loading) {
-        //      pay = <Spinner/>;
-        // }
 
         return(
             <div>
-                {/* {pay} */}
-
                         <Card>
-                        {
-                    Array.isArray(this.state.payslips) ? this.state.payslips.map((paysl) =>(
+                        
                         <section id="invoice" className="py-5">
                                 <div className="container">
                                     <div className="card">
@@ -53,7 +24,7 @@ class Payslip extends Component {
                                         <div className="card-body">
                                             <div className="row mb-4">
                                                 <div className="col-sm-6">
-                                                    <h6 className="mb-3">To:</h6>
+                                                    <h6 className="mb-3">From:</h6>
                                                         <div>
                                                             <strong>Akshar Vijay</strong>
                                                         </div>
@@ -66,7 +37,7 @@ class Payslip extends Component {
                                                         <div className="col-sm-6">
                                                             <h6 className="mb-3">To:</h6>
                                                             <div>
-                                                                <strong>{paysl.firstname}</strong>
+                                                                <strong>Akshar Vijay</strong>
                                                             </div>
                                                             <div>13 B Unit 1, Maioro Street, New Windsor</div>
                                                                <div>Auckland</div>
@@ -81,32 +52,32 @@ class Payslip extends Component {
                                                                         <td className="left">
                                                                             <strong>Gross Income</strong>
                                                                         </td>
-                                                                           <td className="right"><i className="fas fa-dollar-sign"></i> {paysl.grossincome}</td>
+                                                                           <td className="right"><i className="fas fa-dollar-sign"></i> 55,000</td>
                                                                        </tr>
                                                                         <tr>
                                                                            <td className="left">
                                                                                <strong>Income Tax</strong>
                                                                            </td>
-                                                                           <td className="right"><i className="fas fa-dollar-sign"></i> {paysl.incometax}</td>
+                                                                           <td className="right"><i className="fas fa-dollar-sign"></i> 2,000</td>
                                                                        </tr>
                                                                        <tr>
                                                                            <td className="left">
                                                                                <strong>Net Income</strong>
                                                                            </td>
-                                                                           <td className="right"><i className="fas fa-dollar-sign"></i> {paysl.netincome}</td>
+                                                                           <td className="right"><i className="fas fa-dollar-sign"></i> 53,000</td>
                                                                        </tr>
                                                                        <tr>
                                                                            <td className="left">
                                                                                <strong>Super Rate</strong>
                                                                            </td>
-                                                                           <td className="right"><i className="fas fa-dollar-sign"></i> {paysl.super}</td>
+                                                                           <td className="right"><i className="fas fa-dollar-sign"></i> 1,000</td>
                                                                        </tr>
                                                                        <tr>
                                                                            <td className="left">
                                                                                <strong>Total Amount Payble</strong>
                                                                            </td>
                                                                            <td className="right text-success">
-                                                                               <strong><i className="fas fa-dollar-sign"></i> {paysl.total}</strong>
+                                                                               <strong><i className="fas fa-dollar-sign"></i> 52,000</strong>
                                                                            </td>
                                                                        </tr>
                                                                    </tbody>
@@ -117,10 +88,7 @@ class Payslip extends Component {
                                                </div>
                                            </div>
                             </section>
-                                                )) : (
-                                                    "No news found"
-                                                   )
-                                            }
+
             
                         </Card>
 
