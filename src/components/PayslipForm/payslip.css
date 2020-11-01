@@ -1,0 +1,8 @@
+.hidden {
+    display: none;
+  }
+
+  .inline-errormsg {
+    color: red;
+    font-size: 12px;
+  }

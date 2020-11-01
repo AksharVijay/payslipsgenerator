@@ -3,7 +3,7 @@ import styles from './Button.module.css';
 
 const Button = (props) => {
     return(
-    <button type ="submit"
+    <button 
         className = {[styles.Button , styles[props.btnType]].join(' ')}
         onClick ={props.clicked} >{props.children}</button>
     );

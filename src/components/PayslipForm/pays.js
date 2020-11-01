@@ -3,6 +3,8 @@ import Card from '../UI/Card/Card';
 import styles from './PayslipForm.module.css';
 import './payslip.css';
 import Button from '../UI/Button/Button';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 // import $ from 'jquery';
 
 class PayslipForm extends Component {
@@ -17,8 +19,8 @@ class PayslipForm extends Component {
         phone :'',
         annualSalary :'',
         superm : '',
-        date : '',
-        grossIncome:'',
+        // date : '',
+        grossIncome : '',
         incomeTax : '',
         netIncome :'',
         superRate :'',
@@ -37,7 +39,7 @@ class PayslipForm extends Component {
         let value = e.target.value;
         let obj = {};
         obj[key] = value;
-        this.setState(obj);
+        this.setState({obj});
     }
 
     lastNameHandler = (e) => {
@@ -45,7 +47,7 @@ class PayslipForm extends Component {
         let value = e.target.value;
         let obj = {};
         obj[key] = value;
-        this.setState(obj);
+        this.setState({obj});
     }
 
     addressHandler = (e) => {
@@ -53,7 +55,7 @@ class PayslipForm extends Component {
         let value = e.target.value;
         let obj = {};
         obj[key] = value;
-        this.setState(obj);
+        this.setState({obj});
     }
 
     emailHandler = (e) => {
@@ -61,7 +63,7 @@ class PayslipForm extends Component {
         let value = e.target.value;
         let obj = {};
         obj[key] = value;
-        this.setState(obj);
+        this.setState({obj});
     }
 
     phoneHandler = (e) => {
@@ -70,7 +72,7 @@ class PayslipForm extends Component {
        let value = e.target.value;
         let obj = {};
         obj[key] = value;
-        this.setState(obj);
+        this.setState({obj});
     }
     
     annualSalaryHandler = (e) => {
@@ -83,25 +85,26 @@ class PayslipForm extends Component {
             this.setState({
                 annualSalary: anSal,
                 grossIncome : (this.state.annualSalary) / 12,
-                //incomeTax : (3572 + (this.state.annualSalary - 37000) * 0.325)/12 
-                renderSwitch(incomeTax){
-                    switch(this.state.incomeTax){
-                        case this.state.annualSalary > 0 && this.state.annualSalary<= 18200 :
-                            return (this.state.annualSalary)/12 ;
-                        case this.state.annualSalary > 18201 && this.state.annualSalary<= 37000 :
-                            return (1200 + (this.state.annualSalary - 18200) * 0.19)/12 ;
-                        case this.state.annualSalary > 37001 && this.state.annualSalary<= 80000 :
-                            return (3572 + (this.state.annualSalary - 37000) * 0.325)/12 ;
-                        case this.state.annualSalary > 80001 && this.state.annualSalary<= 180000 :
-                            return (17547 + (this.state.annualSalary - 80000) * 0.37)/12 ;
-                        case this.state.annualSalary >= 180001 :
-                            return (54547 + (this.state.annualSalary - 180000) * 0.45)/12 ;
-                        default :
-                            return (this.state.annualSalary)/12;
-                    }
-                },
+                incomeTax : (3572 + (this.state.annualSalary - 37000) * 0.725)/12,
+                // renderSwitch(incomeTax){
+                //     switch(incomeTax){
+                //         case this.state.annualSalary > 0 && this.state.annualSalary<= 18200 :
+                //             return (this.state.annualSalary)/12 ;
+                //         case this.state.annualSalary > 18201 && this.state.annualSalary<= 37000 :
+                //             return (1200 + (this.state.annualSalary - 18200) * 0.19)/12 ;
+                //         case this.state.annualSalary > 37001 && this.state.annualSalary<= 80000 :
+                //             return (3572 + (this.state.annualSalary - 37000) * 0.325)/12 ;
+                //         case this.state.annualSalary > 80001 && this.state.annualSalary<= 180000 :
+                //             return (17547 + (this.state.annualSalary - 80000) * 0.37)/12 ;
+                //         case this.state.annualSalary >= 180001 :
+                //             return (54547 + (this.state.annualSalary - 180000) * 0.45)/12 ;
+                //         default :
+                //             return (this.state.annualSalary)/12;
+                //     }
+                // },
 
                 netIncome : (this.state.grossIncome) - (this.state.incomeTax),
+                superRate : (this.state.netIncome) * (this.state.superm),
                 obj
               }); 
           }
@@ -116,21 +119,21 @@ class PayslipForm extends Component {
             obj[key] = value;
             this.setState({
                 superm: sup,
-                superRate : (this.state.netIncome) * (this.state.superm),
+                // superRate : (this.state.netIncome) * (this.state.superm),
                 obj
               }); 
           }
     }
 
     
-    dateHandler = (e) => {
-        let key = e.target.name;
-        let value = e.target.value;
-        let obj = {};
-        obj[key] = value;
+    // dateHandler = (date) => {
+    //     // let key = e.target.name;
+    //     // let value = e.target.value;
+    //     // let obj = {};
+    //     // obj[key] = value;
 
-        this.setState(obj);
-    }
+    //     this.setState({date});
+    // }
 
     onbeforeunload = function (e) {
         localStorage.clear();
@@ -173,10 +176,10 @@ class PayslipForm extends Component {
             if (this.state.superm === "") {
                 errors.push("superm");
             }
-            //date
-            if (this.state.date === "") {
-                errors.push("date");
-            }
+            // //date
+            // if (this.state.date === "") {
+            //     errors.push("date");
+            // }
 
             this.setState({
             errors: errors,
@@ -322,33 +325,18 @@ class PayslipForm extends Component {
                                     <div className={ this.hasError("superm") ? "inline-errormsg" : "hidden" } > Please enter number only </div>
                             </div>
 
-                             <div className={styles.formControl}>
+                             {/* <div className={styles.formControl}>
                                 <label htmlFor="date" >Month</label>
                                     <div className ="input-group">
                                         <div className="input-group-prepend"> 
 									        <span className="input-group-text" id="inputGroupPrepend"><i className="fas fa-calendar-check"></i></span>
 								        </div>
-                                        <select  className={ this.hasError("date") ? "form-control is-invalid browser-default custom-select" : "form-control" } name="date"  value={this.state.date} onChange={this.dateHandler}>
-  <option defaultValue>Select the month</option>
-  <option value="January">January 2020</option>
-  <option value="February">February 2020</option>
-  <option value="March">March 2020</option>
-  <option value="April">April 2020</option>
-  <option value="May">May 2020</option>
-  <option value="June">June 2020</option>
-  <option value="July">July 2020</option>
-  <option value="August">August 2020</option>
-  <option value="September">September 2020</option>
-  <option value="October">October 2020</option>
-  <option value="November">November 2020</option>
-  <option value="December">December 2020</option>
-</select>
-                                        {/* <input autoComplete="off" type="text" className={ this.hasError("date") ? "form-control is-invalid" : "form-control" } name="date" placeholder="Month and Year"  value={this.state.date} onChange={this.dateHandler} /> */}
+                                        <DatePicker className={ this.hasError("date") ? "form-control is-invalid" : "form-control" } selected={this.state.date.toString()} onChange={this.dateHandler} dateFormat="MM/yyyy" showMonthYearPicker/> 
                                     </div>
                                 <div className={ this.hasError("date") ? "inline-errormsg" : "hidden" } > Please select the month </div>
-                            </div> 
+                            </div>  */}
                             <Button btnType= "GeneratePayslip" clicked ={() => (this.state.date) === '' ? null : this.setState({showing : true})}> Generate Payslip</Button> 
-                            <Button type="button" btnType= "Reset" clicked ={this.resetHandler}> Reset </Button>
+                            <Button btnType= "Reset" clicked ={this.resetHandler}> Reset </Button>
                         </form>
                
                     </Card>
